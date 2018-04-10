@@ -21,4 +21,3 @@ ADD https://github.com/Yelp/dumb-init/releases/download/v1.2.1/dumb-init_1.2.1_a
 RUN chmod +x /usr/local/bin/dumb-init
 
 ENV DISPLAY=:99
-RUN Xvfb :0 -ac -screen 0 1024x768x24 &
