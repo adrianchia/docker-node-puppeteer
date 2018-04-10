@@ -1,0 +1,22 @@
+sudo: required
+services:
+  - docker
+
+script:
+  - docker build -t adrianchia/docker-node-puppeteer:latest -t adrianchia/docker-node-puppeteer:9 -f ./9/Dockerfile .
+  - docker build -t adrianchia/docker-node-puppeteer:alpine -t adrianchia/docker-node-puppeteer:9-alpine -f ./9/alpine/Dockerfile .
+  - docker build -t adrianchia/docker-node-puppeteer:carbon -t adrianchia/docker-node-puppeteer:8 -f ./8/Dockerfile .
+  - docker build -t adrianchia/docker-node-puppeteer:carbon-alpine -t adrianchia/docker-node-puppeteer:8-alpine -f ./8/alpine/Dockerfile .
+
+before_deploy:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+
+deploy:
+  - docker push adrianchia/docker-node-puppeteer:latest
+  - docker push adrianchia/docker-node-puppeteer:9
+  - docker push adrianchia/docker-node-puppeteer:alpine
+  - docker push adrianchia/docker-node-puppeteer:9-alpine
+  - docker push adrianchia/docker-node-puppeteer:carbon
+  - docker push adrianchia/docker-node-puppeteer:8
+  - docker push adrianchia/docker-node-puppeteer:carbon-alpine
+  - docker push adrianchia/docker-node-puppeteer:8-alpine
