@@ -20,5 +20,5 @@ ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils 
 ADD https://github.com/Yelp/dumb-init/releases/download/v1.2.1/dumb-init_1.2.1_amd64 /usr/local/bin/dumb-init
 RUN chmod +x /usr/local/bin/dumb-init
 
-DISPLAY=:99
+ENV DISPLAY=:99
 RUN Xvfb :0 -ac -screen 0 1024x768x24 &
