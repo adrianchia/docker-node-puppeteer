@@ -3,16 +3,19 @@ services:
   - docker
 
 script:
-  - docker build -t adrianchia/docker-node-puppeteer:latest -t adrianchia/docker-node-puppeteer:9 -f ./9/Dockerfile .
-  - docker build -t adrianchia/docker-node-puppeteer:alpine -t adrianchia/docker-node-puppeteer:9-alpine -f ./9/alpine/Dockerfile .
+  - docker build -t adrianchia/docker-node-puppeteer:latest -t adrianchia/docker-node-puppeteer:10 -f ./10/Dockerfile .
+  - docker build -t adrianchia/docker-node-puppeteer:alpine -t adrianchia/docker-node-puppeteer:10-alpine -f ./10/alpine/Dockerfile .
+  - docker build -t adrianchia/docker-node-puppeteer:9 -f ./9/Dockerfile .
+  - docker build -t adrianchia/docker-node-puppeteer:9-alpine -f ./9/alpine/Dockerfile .
   - docker build -t adrianchia/docker-node-puppeteer:carbon -t adrianchia/docker-node-puppeteer:8 -f ./8/Dockerfile .
   - docker build -t adrianchia/docker-node-puppeteer:carbon-alpine -t adrianchia/docker-node-puppeteer:8-alpine -f ./8/alpine/Dockerfile .
 
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker push adrianchia/docker-node-puppeteer:latest
-  - docker push adrianchia/docker-node-puppeteer:9
+  - docker push adrianchia/docker-node-puppeteer:10
   - docker push adrianchia/docker-node-puppeteer:alpine
+  - docker push adrianchia/docker-node-puppeteer:9
   - docker push adrianchia/docker-node-puppeteer:9-alpine
   - docker push adrianchia/docker-node-puppeteer:carbon
   - docker push adrianchia/docker-node-puppeteer:8
