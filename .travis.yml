@@ -3,30 +3,36 @@ services:
   - docker
 
 script:
-  - docker build -t adrianchia/docker-node-puppeteer:latest -t adrianchia/docker-node-puppeteer:12 -f ./12/Dockerfile .
-  - docker build -t adrianchia/docker-node-puppeteer:alpine -t adrianchia/docker-node-puppeteer:12-alpine -f ./12/alpine/Dockerfile .
-  - docker build -t adrianchia/docker-node-puppeteer:11 -f ./11/Dockerfile .
-  - docker build -t adrianchia/docker-node-puppeteer:11-alpine -f ./11/alpine/Dockerfile .
-  - docker build -t adrianchia/docker-node-puppeteer:10 -t adrianchia/docker-node-puppeteer:dubnium -t adrianchia/docker-node-puppeteer:lts -f ./10/Dockerfile .
-  - docker build -t adrianchia/docker-node-puppeteer:10-alpine -t adrianchia/docker-node-puppeteer:dubnium-alpine -t adrianchia/docker-node-puppeteer:lts-alpine -f ./10/alpine/Dockerfile .
-  - docker build -t adrianchia/docker-node-puppeteer:carbon -t adrianchia/docker-node-puppeteer:8 -f ./8/Dockerfile .
-  - docker build -t adrianchia/docker-node-puppeteer:carbon-alpine -t adrianchia/docker-node-puppeteer:8-alpine -f ./8/alpine/Dockerfile .
+  - docker build -t adrianchia/docker-node-puppeteer:latest -t adrianchia/docker-node-puppeteer:13 -f ./13/Dockerfile .
+  - docker build -t adrianchia/docker-node-puppeteer:alpine -t adrianchia/docker-node-puppeteer:13-alpine -f ./13/alpine/Dockerfile .
+  - docker build -t adrianchia/docker-node-puppeteer:12 -t adrianchia/docker-node-puppeteer:erbium -t adrianchia/docker-node-puppeteer:lts -f ./12/Dockerfile .
+  - docker build -t adrianchia/docker-node-puppeteer:12-alpine -t adrianchia/docker-node-puppeteer:erbium-alpine -t adrianchia/docker-node-puppeteer:lts-alpine -f ./12/alpine/Dockerfile .
+  #- docker build -t adrianchia/docker-node-puppeteer:11 -f ./11/Dockerfile .
+  #- docker build -t adrianchia/docker-node-puppeteer:11-alpine -f ./11/alpine/Dockerfile .
+  - docker build -t adrianchia/docker-node-puppeteer:10 -t adrianchia/docker-node-puppeteer:dubnium -f ./10/Dockerfile .
+  - docker build -t adrianchia/docker-node-puppeteer:10-alpine -t adrianchia/docker-node-puppeteer:dubnium-alpine -f ./10/alpine/Dockerfile .
+  #- docker build -t adrianchia/docker-node-puppeteer:carbon -t adrianchia/docker-node-puppeteer:8 -f ./8/Dockerfile .
+  #- docker build -t adrianchia/docker-node-puppeteer:carbon-alpine -t adrianchia/docker-node-puppeteer:8-alpine -f ./8/alpine/Dockerfile .
 
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker push adrianchia/docker-node-puppeteer:latest
-  - docker push adrianchia/docker-node-puppeteer:12
+  - docker push adrianchia/docker-node-puppeteer:13
   - docker push adrianchia/docker-node-puppeteer:alpine
+  - docker push adrianchia/docker-node-puppeteer:13-alpine
+  - docker push adrianchia/docker-node-puppeteer:12
   - docker push adrianchia/docker-node-puppeteer:12-alpine
-  - docker push adrianchia/docker-node-puppeteer:11
-  - docker push adrianchia/docker-node-puppeteer:11-alpine
+  - docker push adrianchia/docker-node-puppeteer:lts
+  - docker push adrianchia/docker-node-puppeteer:lts-alpine
+  - docker push adrianchia/docker-node-puppeteer:erbium
+  - docker push adrianchia/docker-node-puppeteer:erbium-alpine
+  #- docker push adrianchia/docker-node-puppeteer:11
+  #- docker push adrianchia/docker-node-puppeteer:11-alpine
   - docker push adrianchia/docker-node-puppeteer:10
   - docker push adrianchia/docker-node-puppeteer:dubnium
-  - docker push adrianchia/docker-node-puppeteer:lts
   - docker push adrianchia/docker-node-puppeteer:10-alpine
   - docker push adrianchia/docker-node-puppeteer:dubnium-alpine
-  - docker push adrianchia/docker-node-puppeteer:lts-alpine
-  - docker push adrianchia/docker-node-puppeteer:carbon
-  - docker push adrianchia/docker-node-puppeteer:8
-  - docker push adrianchia/docker-node-puppeteer:carbon-alpine
-  - docker push adrianchia/docker-node-puppeteer:8-alpine
+  #- docker push adrianchia/docker-node-puppeteer:carbon
+  #- docker push adrianchia/docker-node-puppeteer:8
+  #- docker push adrianchia/docker-node-puppeteer:carbon-alpine
+  #- docker push adrianchia/docker-node-puppeteer:8-alpine
